@@ -9,7 +9,7 @@ OUTPUT_FILE="$(jq --raw-output '.output_file' $CONFIG_PATH)"
 ATTRIBUTES_PROPERTY="$(jq --raw-output '.attributes_property' $CONFIG_PATH)"
 ATTRIBUTES_FORMAT="$(jq --raw-output '.attributes_format' $CONFIG_PATH)"
 
-SMARTCTL_OUTPUT=$(/usr/sbin/smartctl -a $HDD_PATH --json)
+SMARTCTL_OUTPUT=$(/usr/sbin/smartctl -x -d sat $HDD_PATH --json)
 
 if [ "$DEBUG" = "true" ]; then
     echo "$SMARTCTL_OUTPUT" > /share/hdd_tools/${OUTPUT_FILE}
